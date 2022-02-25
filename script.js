@@ -2,15 +2,62 @@ var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
 var startBtn = document.getElementById('start-quiz')
 var header = document.getElementById('welcome');
-var timeLeft = 20;
+var answer = document.getElementById('answer');
+var timeLeft = 150;
 
 // create array with questions and answers
+const questionSet = [
+  {
+    question: "Inside which HTML element do we put the JavaScript?",
+    answers: [
+      { text: "<script>", correct: true },
+      { text: "<javascript>", correct: false },
+      { text: "<js>", correct: false },
+      { text: "<scripting>", correct: false },
+
+    ]
+  },
+  {
+    question: "How do you create a function in JavaScript?",
+    answers: [
+      { text: "function myFunction()", correct: true },
+      { text: "function = myFunction()", correct: false },
+      { text: "fucntion:myFunction()", correct: false },
+
+    ]
+  },
+  {
+    question: "Where is the correct place to insert a JavaScript?",
+    answers: [
+      { text: "The <body> section.", correct: true },
+      { text: "Both <body> and <head> are correct.", correct: false },
+      { text: "The <head> section", correct: false },
+    ]
+  },
+  {
+    question: "The external JavaScript file must contain the <script> tag.",
+    answers: [
+      { text: "True", correct: true },
+      { text: "False", correct: false },
+
+    ]
+  },
+  {
+    question: "How do you write 'Hello World' in an alert box?",
+    answers: [
+      { text: "alert('Hello World');", correct: true },
+      { text: "msgBox('Hello World');", correct: false },
+      { text: "alertBox('Hello World');", correct: false },
+      { text: "msg('Hello World');", correct: false },
+    ]
+  },
+];
+
+let shuffledQuestions, currentQuestion
+
 
 function countdown() {
   startBtn.remove();
-
-
-  // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
   var timeInterval = setInterval(function () {
 
     if (timeLeft > 1) {
@@ -27,36 +74,31 @@ function countdown() {
 };
 
 
-startBtn.addEventListener("click", startQuiz)
+startBtn.addEventListener("click", setQuiz)
 
-function startQuiz() {
+function setQuiz() {
   countdown();
-  header.innerHTML = 'Could I be more like a question?'
+  shuffledQuestions = questionSet.sort(() => Math.random() - .5)
+  currentQuestion = 0
+  setQuestions();
+};
 
-  var optBtn1 = document.createElement("button")
-  var optBtn2 = document.createElement("button")
-  var optBtn3 = document.createElement("button")
-  var optBtn4 = document.createElement("button")
+function setQuestions() {
+  showQuestion(shuffledQuestions[currentQuestion])
+};
 
-  optBtn1.textContent = 'Answer 1'
-  optBtn1.className = "optBtn"
-  optBtn2.textContent = 'Answer 2'
-  optBtn2.className = "optBtn"
-  optBtn3.textContent = 'Answer 3'
-  optBtn3.className = "optBtn"
-  optBtn4.textContent = 'Answer 4'
-  optBtn4.className = "optBtn"
+function showQuestion(question) {
+  header.innerText = question.question
+  question.answers.forEach(answers => {
+    var optBtn = document.createElement("button")
+    optBtn.innerText = answers.text
+    optBtn.className = "optBtn"
+    optBtn.answers
+    mainEl.appendChild(optBtn)
+    
 
-  mainEl.appendChild(optBtn1)
-  mainEl.appendChild(optBtn2)
-  mainEl.appendChild(optBtn3)
-  mainEl.appendChild(optBtn4)
-
-
-
+  })
 }
-// change header to display question
-// append li buttons
 // add true value to prompt correct
 // add false value to prompt wrong answer and deduct x seconds from timer
 
