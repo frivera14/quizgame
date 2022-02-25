@@ -2,14 +2,14 @@ var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
 var startBtn = document.getElementById('start-quiz')
 var header = document.getElementById('welcome');
-var answer = document.getElementById('answer');
 var timeLeft = 150;
+let shuffledQuestions, currentQuestion
 
 // create array with questions and answers
 const questionSet = [
   {
     question: "Inside which HTML element do we put the JavaScript?",
-    answers: [
+    answer: [
       { text: "<script>", correct: true },
       { text: "<javascript>", correct: false },
       { text: "<js>", correct: false },
@@ -19,7 +19,7 @@ const questionSet = [
   },
   {
     question: "How do you create a function in JavaScript?",
-    answers: [
+    answer: [
       { text: "function myFunction()", correct: true },
       { text: "function = myFunction()", correct: false },
       { text: "fucntion:myFunction()", correct: false },
@@ -28,7 +28,7 @@ const questionSet = [
   },
   {
     question: "Where is the correct place to insert a JavaScript?",
-    answers: [
+    answer: [
       { text: "The <body> section.", correct: true },
       { text: "Both <body> and <head> are correct.", correct: false },
       { text: "The <head> section", correct: false },
@@ -36,7 +36,7 @@ const questionSet = [
   },
   {
     question: "The external JavaScript file must contain the <script> tag.",
-    answers: [
+    answer: [
       { text: "True", correct: true },
       { text: "False", correct: false },
 
@@ -44,7 +44,7 @@ const questionSet = [
   },
   {
     question: "How do you write 'Hello World' in an alert box?",
-    answers: [
+    answer: [
       { text: "alert('Hello World');", correct: true },
       { text: "msgBox('Hello World');", correct: false },
       { text: "alertBox('Hello World');", correct: false },
@@ -52,9 +52,6 @@ const questionSet = [
     ]
   },
 ];
-
-let shuffledQuestions, currentQuestion
-
 
 function countdown() {
   startBtn.remove();
@@ -89,16 +86,25 @@ function setQuestions() {
 
 function showQuestion(question) {
   header.innerText = question.question
-  question.answers.forEach(answers => {
+  question.answer.forEach(answer => {
     var optBtn = document.createElement("button")
-    optBtn.innerText = answers.text
+    optBtn.innerText = answer.text
     optBtn.className = "optBtn"
-    optBtn.answers
+    optBtn.addEventListener('click', selectAnswer)
     mainEl.appendChild(optBtn)
-    
+
 
   })
 }
+
+function selectAnswer(event) {
+  var answerSelection = event.target.addEventListener('click');
+
+  if (answerSelection.matches(true))
+    console.log('This is true');
+};
+
+
 // add true value to prompt correct
 // add false value to prompt wrong answer and deduct x seconds from timer
 
