@@ -2,10 +2,13 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-#countdown {
+header {
   display: flex;
-  justify-content: end;
-  padding-top: none;
+  justify-content: space-between;
+}
+
+#answer {
+  font-size: large;
 }
 
 .container {
@@ -21,7 +24,21 @@ body {
   width: 250px;
 }
 
+.optBtn {
+  background-color: rgb(7, 179, 247);
+  border-color:  purple;
+  border-radius: 3px;
+  font-size: large;
+  border-radius: 20px;
+  color: white;
+  width: 150px;
+  height: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
 .welcome {
+  font-size:xx-large;
   padding-top: 100px;
   margin-bottom: 20px;
 }
