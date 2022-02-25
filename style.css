@@ -18,16 +18,22 @@ header {
 }
 
 .btn {
-  background-color: rgb(100, 6, 100);
+  background-color: rgb(108, 15, 131);
   border-radius: 20px;
   color: white;
+  font-size: large;
   width: 250px;
+  height: 50px;
+}
+
+.btn:hover {
+  background-color: rgb(108, 15, 131, .75);
 }
 
 .optBtn {
-  background-color: rgb(7, 179, 247);
-  border-color:  purple;
-  border-radius: 3px;
+  background-color: rgb(108, 15, 131);
+  box-shadow: 10%;
+  border-radius: 2px;
   font-size: large;
   border-radius: 20px;
   color: white;
@@ -35,6 +41,10 @@ header {
   height: 100px;
   margin-left: 10px;
   margin-right: 10px;
+}
+
+.optBtn:hover {
+  background-color: rgb(108, 15, 131, .75);
 }
 
 .welcome {

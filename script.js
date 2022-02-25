@@ -2,32 +2,24 @@ var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
 var startBtn = document.getElementById('start-quiz')
 var header = document.getElementById('welcome');
-var mkList = document.createElement("ol");
-var mkItem1 = document.createElement("li")
-var mkItem2 = document.createElement("li")
-var mkItem3 = document.createElement("li")
-var mkItem4 = document.createElement("li")
+var timeLeft = 20;
+
 // create array with questions and answers
-var option1 = false
-var option2 = false
-var option3 = false
-var option4 = false
 
 function countdown() {
-  var timeLeft = 20;
   startBtn.remove();
-  
+
 
   // TODO: Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  var timeInterval = setInterval(function() {
+  var timeInterval = setInterval(function () {
 
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft;
       timeLeft--;
-    }else if (timeLeft === 1) {
+    } else if (timeLeft === 1) {
       timerEl.textContent = timeLeft;
       timeLeft--;
-    }else {
+    } else {
       timerEl.textContent = ' ';
       clearInterval();
     }
@@ -38,11 +30,12 @@ function countdown() {
 startBtn.addEventListener("click", startQuiz)
 
 function startQuiz() {
+  countdown();
   header.innerHTML = 'Could I be more like a question?'
 
   var optBtn1 = document.createElement("button")
   var optBtn2 = document.createElement("button")
-  var optBtn3= document.createElement("button")
+  var optBtn3 = document.createElement("button")
   var optBtn4 = document.createElement("button")
 
   optBtn1.textContent = 'Answer 1'
@@ -54,21 +47,16 @@ function startQuiz() {
   optBtn4.textContent = 'Answer 4'
   optBtn4.className = "optBtn"
 
-  
-  mainEl.appendChild(mkList);
   mainEl.appendChild(optBtn1)
   mainEl.appendChild(optBtn2)
   mainEl.appendChild(optBtn3)
   mainEl.appendChild(optBtn4)
 
-  
 
-  countdown();
-  
 
 }
 // change header to display question
-// append li buttons 
+// append li buttons
 // add true value to prompt correct
 // add false value to prompt wrong answer and deduct x seconds from timer
 
