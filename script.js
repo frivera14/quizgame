@@ -98,7 +98,7 @@ function showQuestion(question) {
 }
 
 function selectAnswer(event) {
-  var answerSelection = event.target.addEventListener('click');
+  var answerSelection = event.target
 
   if (answerSelection.matches(true))
     console.log('This is true');
