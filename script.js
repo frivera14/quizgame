@@ -2,6 +2,7 @@ var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
 var startBtn = document.getElementById('start-quiz')
 var header = document.getElementById('welcome');
+var score = document.getElementsByClassName('answer')
 var optBtn1 = document.createElement("button")
 var optBtn2 = document.createElement("button")
 var optBtn3 = document.createElement("button")
@@ -14,6 +15,12 @@ var opt3Btn2 = document.createElement("button")
 var opt3Btn3 = document.createElement("button")
 var opt4Btn1 = document.createElement("button")
 var opt4Btn2 = document.createElement("button")
+var timeLeft = 100;
+var timeInterval;
+var highScore = JSON.parse(localStorage.getItem('highScore') || '[]');
+var nameHere = document.createElement("input")
+var submit = document.createElement("button")
+
 
 optBtn1.className = 'optBtn'
 optBtn2.className = 'optBtn'
@@ -28,12 +35,11 @@ opt3Btn3.className = 'optBtn'
 opt4Btn1.className = 'optBtn'
 opt4Btn2.className = 'optBtn'
 
-var timeLeft = 100;
 
 function countdown() {
   startBtn.remove();
   header.innerHTML = ''
-  var timeInterval = setInterval(function () {
+  timeInterval = setInterval(function () {
 
     if (timeLeft > 1) {
       timerEl.textContent = timeLeft;
@@ -185,16 +191,43 @@ function lastQ() {
   opt4Btn2.innerText = 'False'
   mainEl.appendChild(opt4Btn1)
   mainEl.appendChild(opt4Btn2)
-  
+
 
 }
 
 function clearLast() {
-  header.innerText = 'All Done! Here is your score!'
+  header.innerText = 'All Done! There is your score!'
   opt4Btn1.className = 'hide'
   opt4Btn2.className = 'hide'
+  submit.innerText = 'submit'
+  nameHere.className = 'form'
+  submit.className = 'btn'
+
+  mainEl.appendChild(nameHere)
+  mainEl.appendChild(submit)
+
+  clearInterval(timeInterval)
+  timerEl.textContent = timeLeft;
+
+
+  submit.addEventListener('click', () =>{
+    highScore.push({
+      score: timeLeft,
+      name: nameHere.value
+    });
+  
+    highScore.sort((score1, score2) => {
+      return score2.score - score1.score
+    })
+
+    localStorage.setItem('highScore', JSON.stringify(highScore));
+
+  }
+  )
+
   
 }
+
 
 opt4Btn1.addEventListener('click', function lastCheck() {
   timeLeft -= 20;
